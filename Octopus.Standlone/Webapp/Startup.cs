@@ -5,16 +5,25 @@ namespace Octopus.Standlone.Webapp
 {
     public class Startup
     {
-        public void Configuration(IAppBuilder appBuilder)
+        //public void Configuration(IAppBuilder appBuilder)
+        //{
+        //    var config = new HttpConfiguration();
+        //    config.Routes.MapHttpRoute(
+        //        name: "DefaultApi",
+        //        routeTemplate: "api/{controller}/{id}",
+        //        defaults: new { id = RouteParameter.Optional }
+        //        );
+        //    config.MessageHandlers.Add(new StreamReadingDelegatingHandler());
+        //    appBuilder.UseWebApi(config);
+        //}
+
+        public void Configuration(IAppBuilder app)
         {
-            var config = new HttpConfiguration();
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-                );
-            config.MessageHandlers.Add(new StreamReadingDelegatingHandler());
-            appBuilder.UseWebApi(config);
+            app.Run(context =>
+            {
+                context.Response.ContentType = "text/plain";
+                return context.Response.WriteAsync("Hello, world.");
+            });
         }
     }
 }
