@@ -1,7 +1,4 @@
-﻿using Microsoft.Owin.Hosting;
-using Octopus.Standlone.Webapp;
-using System;
-using System.Net.Http;
+﻿using Octopus.Standlone.Webapp;
 using Topshelf;
 
 namespace Octopus.Standlone
@@ -19,21 +16,6 @@ namespace Octopus.Standlone
                     s.WhenStopped(service => service.Stop());
                 });
             });
-
-            //string baseAddress = "http://localhost:6060";
-
-            //Start OWIN host
-            //using (WebApp.Start<Startup>(url: baseAddress))
-            //{
-            //    Create HttpCient and make a request to api/ values
-            //    HttpClient client = new HttpClient();
-
-            //    var response = client.GetAsync(baseAddress + "api/helloworld").Result;
-
-            //    Console.WriteLine(response);
-            //    Console.WriteLine(response.Content.ReadAsStringAsync().Result);
-            //}
-
         }
     }
 }
