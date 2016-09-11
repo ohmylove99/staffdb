@@ -9,7 +9,7 @@ namespace Octopus.Standlone.Webapp
 
         public void Start()
         {
-            _webApp = WebApp.Start<Startup>("http://localhost:9000");
+            _webApp = WebApp.Start<Startup>("http://localhost:6060");
         }
 
         public void Stop()
