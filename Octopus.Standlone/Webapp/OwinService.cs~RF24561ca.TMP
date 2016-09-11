@@ -5,7 +5,7 @@ namespace Octopus.Standlone.Webapp
 {
     public class OwinService
     {
-        public const string BaseUrl = "http://*:6060";
+        public const string BaseUrl = "http://localhost:6060";
 
         private IDisposable _webApp;
 

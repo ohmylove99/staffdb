@@ -11,7 +11,8 @@ namespace Octopus.Standlone.Controller
         {
             _helloWorldService = helloWorldService;
         }
-        [HttpPost]
+        [HttpGet]
+        [ActionName("hello")]
         public string SayHello(string s)
         {
             return "Hello, World!" + s;
@@ -21,7 +22,7 @@ namespace Octopus.Standlone.Controller
         {
             return _helloWorldService.FindAll();
         }
-        [HttpGet]
+
         public string Get(int id)
         {
             return _helloWorldService.Find(id);
