@@ -1,8 +1,12 @@
 ﻿using Autofac;
 using Autofac.Integration.WebApi;
+using Microsoft.Owin;
+using Microsoft.Owin.Security.OAuth;
 using Octopus.Standlone.Service;
+using Octopus.Standlone.Service.Provider;
 using Octopus.Standlone.Swagger;
 using Owin;
+using System;
 using System.Reflection;
 using System.Web;
 using System.Web.Http;
@@ -29,6 +33,21 @@ namespace Octopus.Standlone.Webapp
             ConfigCors(config, appBuilder);
             //Autofac
             ConfigAutofac(config);
+
+            // token generation
+            appBuilder.UseOAuthAuthorizationServer(new OAuthAuthorizationServerOptions
+            {
+                // for demo purposes
+                AllowInsecureHttp = true,
+
+                TokenEndpointPath = new PathString("/token"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromHours(8),
+
+                Provider = new AuthorizationServerProvider()
+            });
+            // token consumption
+            appBuilder.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
+
 
             appBuilder.UseWebApi(config);
         }
