@@ -15,6 +15,7 @@ namespace Octopus.Standlone
                     s.WhenStarted(service => service.Start());
                     s.WhenStopped(service => service.Stop());
                 });
+                x.StartAutomatically(); // Start the service automatically
             });
         }
     }
